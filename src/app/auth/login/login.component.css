@@ -1,0 +1,23 @@
+header{
+    background-image: url('https://images.pexels.com/photos/110473/pexels-photo-110473.jpeg?cs=srgb&dl=pexels-energepiccom-110473.jpg&fm=jpg'); 
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 30vh;
+    color: white;
+    letter-spacing: 5px;
+    font-family: 'Fascinate', cursive;
+
+}
+
+header h1{
+    font-size: 5vw;
+    text-shadow: 0 0 20px black;
+
+}
+
+main{
+    min-height: 70vh;
+    /* background: rgb(68,68,68); */
+/* background: linear-gradient(180deg, rgba(100,100,100,1) 0%, rgba(136,136,136,1) 23%, rgba(255,255,255,1) 100%); */
+}

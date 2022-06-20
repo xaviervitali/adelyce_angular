@@ -1,0 +1,60 @@
+<header class="d-flex flex-column justify-content-center align-items-center" >
+
+      
+            <h1>Bucket list </h1>
+
+  </header>
+  
+<main class="d-flex flex-column justify-content-around align-items-around text-center">
+  <div class="">
+  
+
+    <form [formGroup]="form" (ngSubmit)="handleSubmit()" class="container">
+      <div class="form-group  floating-label-form-group controls">
+        <input type="email" class="form-control" placeholder="Adresse de connexion" formControlName="username"
+          [class.is-invalid]="form.controls['username'].invalid&&submitted" >
+        <p class="invalid-feedback" *ngIf="form.controls['username'].hasError('required')&&submitted">
+          L'adresse email est obligatoire !!
+        </p>
+        <p class="invalid-feedback" *ngIf="form.controls['username'].hasError('email')&&submitted">
+          Le format de l'adresse email est invalide ou votre compte n'est pas encore valider
+        </p>
+  
+      </div>
+  
+      <div class="form-group  floating-label-form-group controls">
+        <input type="password" class="form-control" placeholder="Mot de passe"
+          [class.is-invalid]="form.controls['password'].invalid&&submitted" formControlName="password">
+        <p class="invalid-feedback" *ngIf="form.controls['password'].hasError('required')&&submitted">
+          Le mot de passe est obligatoire !!!
+        </p>
+  
+      </div>
+      <div class="alert alert-danger" *ngIf="error">Adresse E-mail ou mot de passe invalide
+      </div>
+      <div class="d-flex justify-content-around" *ngIf="!loggin">
+        <div>
+  
+          <button class="btn text-success">Connexion</button>
+        </div>
+        <div>
+  
+          <a routerLink="/register">
+            <button class="btn text-info btn-sm ">Inscription</button>
+  
+          </a>
+        </div>
+      </div>
+      <div *ngIf="loggin">
+        <div class=" text-success">Connexion en cours</div>
+        <div class="spinner-border text-success" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+      
+  
+    </form>
+
+
+  </div>
+</main>
