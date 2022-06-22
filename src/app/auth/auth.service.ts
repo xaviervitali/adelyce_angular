@@ -13,7 +13,7 @@ import {HttpParams} from "@angular/common/http";
 export class AuthService {
   authChanged = new Subject<boolean>();
   user!: User;
-  isModeratorOrAdmin = false;
+  
   constructor(private http: HttpClient) {
     interval(5000).subscribe(() =>
       this.authChanged.next(this.isAuthenticated())
@@ -35,29 +35,22 @@ export class AuthService {
     this.authChanged.next(false);
   }
   authenticate(credentials: Credential) {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type':  'application/json',
-        "Access-Control-Allow-Origin": "*"
-      })
-    };
     return this.http
-      .post(environment.apiUrl + '/login', {credentials}, httpOptions)
-      .pipe(
-        tap(console.log),
-      );;
+    .post(environment.apiUrl + '/login', credentials)
+    .pipe(
+      tap((data: TokenResponse )=>{
+        
+        this.authChanged.next(true);
+            
+            window.localStorage.setItem('token', data.token ?? "");
+      })
+
+    );
   }
 
   getToken() {
     return window.localStorage.getItem('token');
   }
 
-  // hasRole(role) {
-  //   const token = window.localStorage.getItem('token');
-  //   if (!token) {
-  //     return false;
-  //   }
-  //   const data: any = jwtDecode(token);
-  //   return data.roles.includes(role);
-  // }
+
 }

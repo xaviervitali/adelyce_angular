@@ -29,15 +29,16 @@ export class LoginComponent implements OnInit {
   handleSubmit() {
     this.submitted = true;
 
-    // if (this.form.invalid) {
-    //   return;
-    // }
+    if (this.form.invalid) {
+      return;
+    }
     this.loggin = true;
     this.error = false;
     this.authService.authenticate(this.form.value  as Credential).subscribe(
       (token) => {
         this.loggin = false;
-        this.route.navigateByUrl('/articles');
+        this.route.navigateByUrl('/bucketList');
+
       },
       (e) => {
         this.loggin = false;
