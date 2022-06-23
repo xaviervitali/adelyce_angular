@@ -4,16 +4,16 @@ import { environment } from 'src/environments/environment';
 import { tap } from 'rxjs/operators';
 import jwtDecode from 'jwt-decode';
 import { Subject, interval } from 'rxjs';
-import { User } from './user';
+import { User } from '../user';
 import { TokenResponse } from './tokenResponse';
-import {HttpParams} from "@angular/common/http";
+import { HttpParams } from '@angular/common/http';
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   authChanged = new Subject<boolean>();
   user!: User;
-  
+
   constructor(private http: HttpClient) {
     interval(5000).subscribe(() =>
       this.authChanged.next(this.isAuthenticated())
@@ -35,22 +35,16 @@ export class AuthService {
     this.authChanged.next(false);
   }
   authenticate(credentials: Credential) {
-    return this.http
-    .post(environment.apiUrl + '/login', credentials)
-    .pipe(
-      tap((data: TokenResponse )=>{
-        
+    return this.http.post(environment.apiUrl + '/login', credentials).pipe(
+      tap((data: TokenResponse) => {
         this.authChanged.next(true);
-            
-            window.localStorage.setItem('token', data.token ?? "");
-      })
 
+        window.localStorage.setItem('token', data.token ?? '');
+      })
     );
   }
 
   getToken() {
     return window.localStorage.getItem('token');
   }
-
-
 }

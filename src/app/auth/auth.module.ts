@@ -1,8 +1,6 @@
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { SharedModule } from '../shared/shared.module';
-// import { LoginComponent } from './login/login.component';
-// import { RegisterComponent } from './register/register.component';
 import { TokenInterceptor } from './token.interceptor';
 import { LoginComponent } from './login/login.component';
 
@@ -16,8 +14,6 @@ import { LoginComponent } from './login/login.component';
       multi: true,
     },
   ],
-  declarations: [
-    LoginComponent
-  ],
+  declarations: [LoginComponent],
 })
 export class AuthModule {}

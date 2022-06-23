@@ -19,11 +19,8 @@ export class LoginComponent implements OnInit {
   error = false;
   submitted = false;
   loggin = false;
-  constructor(
-    private authService: AuthService,
-    private route: Router,
-    // private ui: UiService
-  ) {}
+
+  constructor(private authService: AuthService, private route: Router) {}
   ngOnInit(): void {}
 
   handleSubmit() {
@@ -34,11 +31,10 @@ export class LoginComponent implements OnInit {
     }
     this.loggin = true;
     this.error = false;
-    this.authService.authenticate(this.form.value  as Credential).subscribe(
+    this.authService.authenticate(this.form.value as Credential).subscribe(
       (token) => {
         this.loggin = false;
         this.route.navigateByUrl('/bucketList');
-
       },
       (e) => {
         this.loggin = false;
