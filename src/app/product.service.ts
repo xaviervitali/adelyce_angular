@@ -24,11 +24,13 @@ export class ProductService {
     );
   }
   deleteSharedProduct(id: number) {
-    return this.http.delete(environment.apiUrl + '/shared_products/' + id);
+    return this.http.delete(
+      environment.apiUrl + '/' + id + '/shared_products/'
+    );
   }
 
   shareWithUser(id: number) {
-    return this.http.get(environment.apiUrl + '/sharedWithMe/' + id);
+    return this.http.get(environment.apiUrl + '/users/' + id + '/sharedWithMe');
   }
 }
 

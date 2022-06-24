@@ -27,11 +27,15 @@
       <table class="table table-info">
         <thead>
           <th>Nom de l'article</th>
-          <th>Ajouté par</th>
+          <th>Action</th>
         </thead>
         <tr *ngFor="let article of sharedWithUser">
           <td>{{ article.product.name }}</td>
-          <td>{{ article.product.user.firstName }}</td>
+          <td>
+            <button class="btn btn-success btn-sm">
+              Ajouter à votre liste
+            </button>
+          </td>
         </tr>
       </table>
     </article>

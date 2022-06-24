@@ -32,13 +32,13 @@ export class BucketListComponent implements OnInit {
         this.user = user;
       });
 
-      this.productService.shareWithUser(this.auth.user.id).subscribe((swm) => {
-        this.sharedWithUser = swm;
-      });
       this.productService
         .getProductList()
         .subscribe((p) => (this.products = p));
     }
+    this.productService.shareWithUser(this.auth.user.id).subscribe((swm) => {
+      this.sharedWithUser = swm;
+    });
   }
 
   handleSubmit() {
@@ -61,6 +61,13 @@ export class BucketListComponent implements OnInit {
 
   handleDelete(id: number) {
     const copy = [...this.user.bucketList];
+    this.productService.deleteSharedProduct(id).subscribe({
+      next() {},
+      error(err) {},
+    });
+  }
+
+  handleShareWith(id: number) {
     this.productService.deleteSharedProduct(id).subscribe({
       next() {},
       error(err) {},
